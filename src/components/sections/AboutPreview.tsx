@@ -121,17 +121,17 @@ export default function AboutPreview() {
               {/* Floating Elements */}
               <motion.div
                 animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                transition={{ duration: 4, repeat: Infinity }}
                 className="absolute top-10 left-10 w-16 h-16 bg-white/20 dark:bg-white/10 rounded-full"
               />
               <motion.div
                 animate={{ y: [0, 20, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
                 className="absolute bottom-10 right-10 w-12 h-12 bg-white/20 dark:bg-white/10 rounded-full"
               />
               <motion.div
                 animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+                transition={{ duration: 5, repeat: Infinity, delay: 2 }}
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white/30 dark:bg-white/10 rounded-full"
               />
               
@@ -140,7 +140,7 @@ export default function AboutPreview() {
                 <div className="text-center text-white">
                   <motion.div
                     animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                    transition={{ duration: 3, repeat: Infinity }}
                     className="text-6xl font-bold mb-4"
                   >
                     🎓
