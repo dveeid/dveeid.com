@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Filter, Eye } from 'lucide-react';
+import { ExternalLink, Github, Filter } from 'lucide-react';
 import Link from 'next/link';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { projectsData, getProjectsByCategory } from '@/data/projects';
-import { trackProjectCardClick, trackDemoLinkClick, trackGithubLinkClick, trackViewDetailsClick } from '@/utils/analytics';
+import { trackProjectCardClick, trackDemoLinkClick, trackGithubLinkClick } from '@/utils/analytics';
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -97,54 +97,63 @@ export default function ProjectsPage() {
                     className="group"
                   >
                     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-900/20 overflow-hidden hover:shadow-xl dark:hover:shadow-gray-900/40 transition-all duration-300">
-                      {/* Project Image */}
-                      <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-600 overflow-hidden">
-                        {project.image && !project.image.includes('placeholder') ? (
-                          <>
-                            <img
-                              src={project.image}
-                              alt={project.title}
-                              className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300" />
-                          </>
-                        ) : (
-                          <>
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300" />
-                            <div className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
-                              {project.title.split(/[.\s]/)[0]}
+                      {/* Clickable Card Content */}
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        onClick={() => handleProjectCardClick(project.slug)}
+                        className="block cursor-pointer"
+                      >
+                        {/* Project Image */}
+                        <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-600 overflow-hidden">
+                          {project.image && !project.image.includes('placeholder') ? (
+                            <>
+                              <img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300" />
+                            </>
+                          ) : (
+                            <>
+                              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300" />
+                              <div className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
+                                {project.title.split(/[.\s]/)[0]}
+                              </div>
+                            </>
+                          )}
+                          {project.featured && (
+                            <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-semibold">
+                              Featured
                             </div>
-                          </>
-                        )}
-                        {project.featured && (
-                          <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-semibold">
-                            Featured
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Project Content */}
-                      <div className="p-6">
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                          {project.title}
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                          {project.shortDescription}
-                        </p>
-
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {project.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm rounded-full"
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                          )}
                         </div>
 
-                        {/* Project Links */}
+                        {/* Project Content */}
+                        <div className="p-6 pb-4">
+                          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                            {project.shortDescription}
+                          </p>
+
+                          {/* Tags */}
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {project.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm rounded-full"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </Link>
+
+                      {/* Project Links - Outside of clickable area */}
+                      <div className="px-6 pb-6">
                         <div className="flex gap-3">
                           {(() => {
                             const demoLink = project.links.find(link => link.type === 'demo');
@@ -156,6 +165,7 @@ export default function ProjectsPage() {
                                 target={isDisabled ? undefined : "_blank"}
                                 rel={isDisabled ? undefined : "noopener noreferrer"}
                                 onClick={(e) => {
+                                  e.stopPropagation();
                                   if (!isDisabled) {
                                     trackDemoLinkClick(project.slug, project.liveUrl);
                                   }
@@ -187,6 +197,7 @@ export default function ProjectsPage() {
                                 target={isDisabled ? undefined : "_blank"}
                                 rel={isDisabled ? undefined : "noopener noreferrer"}
                                 onClick={(e) => {
+                                  e.stopPropagation();
                                   if (!isDisabled) {
                                     trackGithubLinkClick(project.slug, githubLink.url);
                                   }
@@ -205,24 +216,6 @@ export default function ProjectsPage() {
                               </motion.a>
                             );
                           })()}
-                          
-                          <Link
-                            href={`/projects/${project.slug}`}
-                            onClick={() => handleProjectCardClick(project.slug)}
-                          >
-                            <motion.div
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              onClick={() => {
-                                trackViewDetailsClick(project.slug);
-                              }}
-                            >
-                              <div className="flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-gray-800 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-200">
-                                <Eye size={16} />
-                                View Details
-                              </div>
-                            </motion.div>
-                          </Link>
                         </div>
                       </div>
                     </div>
