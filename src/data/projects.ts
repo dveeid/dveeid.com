@@ -48,6 +48,110 @@ export interface ProjectData {
 
 export const projectsData: ProjectData[] = [
   {
+    id: 5,
+    slug: 'the-hive-office-solutions',
+    title: 'The Hive Office Solutions',
+    shortDescription: 'E-commerce Platform for Cable Management - Full-stack product website featuring the patented HoneyComb cable management system with integrated inventory management.',
+    fullDescription: 'The Hive Office Solutions is a comprehensive e-commerce platform specializing in innovative cable management products. As the founder and lead developer, I spearheaded the development of a full-stack web application that showcases our patented \'HoneyComb\' cable management system. The platform features a complete e-commerce solution with user authentication, admin dashboard, inventory management, and checkout functionality. The project involved coordinating a 4-person team through product design, prototyping, user testing, and web development phases. The integrated inventory management system uses microservices architecture to efficiently track product stock levels, making inventory monitoring seamless for the business operations.',
+    image: '/hiveofficesolns.png',
+    tags: ['React.js', 'Python', 'Flask', 'PostgreSQL', 'E-commerce'],
+    category: 'web',
+    liveUrl: 'https://thehivesolutions.shop',
+    githubUrl: '',
+    featured: true,
+    status: 'completed',
+    duration: '6 months',
+    role: 'Founder & Product Developer',
+    teamSize: 4,
+    features: [
+      'Complete e-commerce platform with product catalog',
+      'User authentication and account management',
+      'Admin dashboard for business operations',
+      'Inventory management with real-time stock tracking',
+      'Secure checkout and payment processing',
+      'Product search and filtering capabilities',
+      'Responsive design for all devices',
+      'Order management and tracking system',
+      'Customer support and contact forms',
+      'Analytics and reporting dashboard'
+    ],
+    challenges: [
+      'Developing microservices for complex inventory management',
+      'Integrating multiple payment gateways for checkout',
+      'Creating scalable product catalog architecture',
+      'Implementing real-time stock tracking across systems',
+      'Coordinating development with product design and testing',
+      'Managing data consistency across microservices',
+      'Optimizing performance for product image galleries'
+    ],
+    solutions: [
+      'Implemented microservices architecture for modular inventory management',
+      'Built integrated dashboard that streamlined inventory tracking processes',
+      'Developed RESTful API architecture for seamless frontend-backend communication',
+      'Used PostgreSQL for robust data management and relationships',
+      'Created responsive React.js frontend with intuitive user experience',
+      'Implemented automated testing pipeline for quality assurance',
+      'Optimized database queries and implemented caching strategies'
+    ],
+    techStack: {
+      frontend: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Bootstrap'],
+      backend: ['Python', 'Flask', 'RESTful APIs'],
+      database: ['PostgreSQL'],
+      deployment: ['Cloud Hosting', 'Domain Management'],
+      tools: ['Git', 'CAD Software', '3D Printing', 'Payment Gateway APIs']
+    },
+    architecture: {
+      overview: 'Microservices-based e-commerce architecture with React.js frontend, Flask API backend, and PostgreSQL database. The system features modular inventory management services and integrated admin dashboard for comprehensive business operations.',
+      components: [
+        {
+          name: 'React.js Frontend',
+          description: 'Modern e-commerce interface with responsive design, product catalog, and user account features',
+          technologies: ['React.js', 'JavaScript', 'CSS3']
+        },
+        {
+          name: 'Flask API Backend',
+          description: 'RESTful API handling authentication, product management, orders, and business logic',
+          technologies: ['Python', 'Flask', 'SQLAlchemy']
+        },
+        {
+          name: 'Inventory Management Service',
+          description: 'Microservice for real-time stock tracking, product updates, and inventory analytics',
+          technologies: ['Python', 'Flask', 'PostgreSQL']
+        },
+        {
+          name: 'Admin Dashboard',
+          description: 'Comprehensive management interface for inventory, orders, customers, and analytics',
+          technologies: ['React.js', 'Chart.js', 'Admin UI Components']
+        },
+        {
+          name: 'Payment Processing',
+          description: 'Secure checkout system with multiple payment gateway integrations',
+          technologies: ['Payment APIs', 'SSL/TLS', 'Encryption']
+        }
+      ]
+    },
+    links: [
+      {
+        title: 'Live Website',
+        url: 'https://thehivesolutions.shop',
+        type: 'demo'
+      },
+      {
+        title: 'GitHub Repository',
+        url: '',
+        type: 'github',
+        disabled: true,
+        note: 'Private repository - proprietary business code'
+      }
+    ],
+    metrics: [
+      { name: 'Development Timeline', value: '6 months (Jun-Dec 2024)' },
+      { name: 'Team Size', value: '4 developers' },
+      { name: 'Product Patent', value: 'HoneyComb Cable Management System' },
+      { name: 'Inventory Tracking Efficiency', value: 'Real-time stock management' }
+    ]
+  },
+  {
     id: 2,
     slug: 'paradise-portfolios',
     title: 'ParadisePortfolios',
